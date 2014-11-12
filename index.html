@@ -8,6 +8,9 @@
 <meta property="og:image" content="http://forgio.github.io/2.png" />
 <meta property="og:image" content="http://forgio.github.io/3.png" />
 
+<!-- Put this script tag to the <head> of your page -->
+<script type="text/javascript" src="http://vk.com/js/api/share.js?90" charset="windows-1251"></script>
+
 <title></title>
 </head>
 <body>
@@ -20,12 +23,18 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
+
 <img src="1.png">
 <img src="2.png">
 <img src="3.png">
 
 
 <div class="fb-share-button" data-href="http://forgio.github.io" data-layout="button"></div>
+
+<!-- Put this script tag to the place, where the Share button will be -->
+<script type="text/javascript"><!--
+document.write(VK.Share.button(false,{type: "link", text: "share"}));
+--></script>
 
 </p>
 </body>
