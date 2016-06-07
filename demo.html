@@ -15,21 +15,13 @@
     	overflow: hidden;
     }
 	</style>
-	<script>
-	  $(document).ready(function(){
-      $(".main").onepage_scroll({
-        sectionContainer: "section",
-        responsiveFallback: 600,
-        loop: false
-      });
-		});
-	</script>
 </head>
 <title>SBA</title>
 <body>
+  <div id="preloader" style="width:100vw; height:100vh;background: #fff;position:fixed;top:0;left:0;z-index:100;"></div>
   <div class="wrapper">
 	  <div class="main" align="center">
-      <section class="page1">
+      <section class="page1 slide">
               <div style="
               position:relative;
               z-index:100;
@@ -42,7 +34,7 @@
               ">  
              </div>
       </section>
-      <section class="page2" style="
+      <section class="page2 slide -loaded" style="
       position:relative;
       width:100vw;
       height:100vh;
@@ -77,8 +69,8 @@
       </section>
 
 
-        <section class="page3" style="background-color:#fff;position:relative;z-index:8;width:100vw;height:100vh;">
-            <video autoplay loop style="position: absolute;
+        <section class="page3 slide"  style="background-color:#fff;position:relative;z-index:8;width:100vw;height:100vh;">
+            <video loop style="position: absolute;
   top:0%; 
   left:50%;
   -webkit-transform: translateX(-50%) translateY(-50%);
@@ -96,12 +88,12 @@
 
 
 
-      <section class="page4" style="position:relative;width:100vw;height:100vh;overflow:hidden;">
+      <section class="page4 slide" style="position:relative;width:100vw;height:100vh;overflow:hidden;">
              <div style="position:relative;z-index:100;height:100%;background-image:url(4.png);background-size:cover;background-position:center;background-repeat:no-repeat;">  
              </div>
     
 
-            <video autoplay loop style="position: absolute;
+            <video loop style="position: absolute;
   top: 50%; 
   left: 50%;
   -webkit-transform: translateX(-50%) translateY(-50%);
@@ -117,8 +109,8 @@
       </section>
 
 
-        <section class="page5" style="background-color:#fff;position:relative;z-index:8;width:100vw;height:100vh;">
-            <video autoplay loop style="position: absolute;
+        <section class="page5 slide" style="background-color:#fff;position:relative;z-index:8;width:100vw;height:100vh;">
+            <video loop style="position: absolute;
   top:0%; 
   left:50%;
   -webkit-transform: translateX(-50%) translateY(-50%);
@@ -133,12 +125,12 @@
             </video>
       </section>
 
- <section class="page6" style="position:relative;width:100vw;height:100vh;overflow:hidden;">
+ <section class="page6 slide" style="position:relative;width:100vw;height:100vh;overflow:hidden;">
              <div style="position:relative;z-index:100;height:100%;background-image:url(6.png);background-size:cover;background-position:center;background-repeat:no-repeat;">  
              </div>
     
 
-            <video autoplay loop style="position: absolute;
+            <video loop style="position: absolute;
   top: 50%; 
   left: 50%;
   -webkit-transform: translateX(-50%) translateY(-50%);
@@ -152,12 +144,31 @@
               <source src="6.mp4" type="video/mp4">
             </video>
       </section>
-
-
-
-
-
     </div>
   </div>
+
+  <script>
+    $('#preloader').fadeOut(1000);
+    var $slides  = $('.slide');
+    $(".main").onepage_scroll({
+      sectionContainer: "section",
+      responsiveFallback: 600,
+      loop: false,
+      afterMove: function(index) {
+
+          $slides.each(function(index_current, element){
+            var video = $(this).find('video');
+            if(video.length){
+              if(index - 1 == index_current){
+                video.get(0).play();
+              }
+              else{
+                video.get(0).pause();
+              }
+            }
+          });
+      }
+    });
+  </script>
 </body>
 </html>
